@@ -1,0 +1,134 @@
+[
+  {
+    "id": "moon-blossom-box",
+    "name": "Moon Blossom Ritual Box",
+    "category": "Facial Ritual",
+    "scent": "Gentle · Hydrating · Floral",
+    "price": "38.00",
+    "description": "A soft, floral ritual set featuring Moon Blossom lotion, Moon Mist, and Bare Bloom.",
+    "badge": "Best Seller",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "clear-bloom-ritual",
+    "name": "Clear Bloom Ritual",
+    "category": "Facial Ritual",
+    "scent": "Fresh · Balanced · Clarifying",
+    "price": "42.00",
+    "description": "Clear Bloom lotion, Midnight Veil facial bar, and Moon Dew Mist for a balanced ritual.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "ghost-whisper-lotion",
+    "name": "Ghost Whisper",
+    "category": "Sensitive Skin Lotion",
+    "scent": "Unscented · Gentle · Comforting",
+    "price": "18.00",
+    "description": "A soothing facial lotion created for sensitive skin and quiet everyday rituals.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "golden-veil-gift",
+    "name": "Golden Veil Gift Set",
+    "category": "Gift Set",
+    "scent": "Rich · Comforting · Moisturizing",
+    "price": "34.00",
+    "description": "A nourishing gift set with Bare Bloom soap and Golden Veil facial cream.",
+    "badge": "Gift Favorite",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "awaken",
+    "name": "Awaken Body Butter",
+    "category": "Body Butter",
+    "scent": "Orange Blossom · Neroli · Vanilla",
+    "price": "18.00",
+    "description": "A bright, uplifting whipped body butter that melts into the skin.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/awaken-body-butter.svg"]
+  },
+  {
+    "id": "afterglow",
+    "name": "AfterGlow Body Butter",
+    "category": "Body Butter",
+    "scent": "Fig · Neroli",
+    "price": "18.00",
+    "description": "A warm, soft body butter created for evening rituals and deep hydration.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/awaken-body-butter.svg"]
+  },
+  {
+    "id": "mens-detox",
+    "name": "Men’s Detox Collection",
+    "category": "Men’s Collection",
+    "scent": "Cedar · Amber · Black Spruce",
+    "price": "22.95",
+    "description": "A rugged four-bar soap gift set for hardworking men who really need to get clean.",
+    "badge": "New",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/mens-detox.svg"]
+  },
+  {
+    "id": "free-bird",
+    "name": "Free Bird",
+    "category": "Body Soap",
+    "scent": "Spearmint · Black Spruce · Vanilla",
+    "price": "6.50",
+    "description": "Cool, woody, and unapologetically free.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/mens-detox.svg"]
+  },
+  {
+    "id": "ashwood",
+    "name": "Ashwood",
+    "category": "Body Soap",
+    "scent": "Cedar & Amber",
+    "price": "6.50",
+    "description": "Rugged, refined, and richly lathering artisan soap.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/mens-detox.svg"]
+  },
+  {
+    "id": "afterlight",
+    "name": "AfterLight",
+    "category": "Soap / Candle Style Bar",
+    "scent": "Jasmine · Amber",
+    "price": "8.00",
+    "description": "Soft, warm, and enchanting — made for slow moments and soft hearts.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "ivory-bloom",
+    "name": "Ivory Bloom",
+    "category": "Soap",
+    "scent": "Creamy · Lush · Floral",
+    "price": "8.00",
+    "description": "A soft floral escape made with goat milk and coconut milk.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  },
+  {
+    "id": "velvet-ember",
+    "name": "Velvet Ember",
+    "category": "Soap",
+    "scent": "Cinnamon · Vanilla",
+    "price": "8.00",
+    "description": "Botanical luxury. Made with intention.",
+    "badge": "",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "images": ["assets/hero-ritual.svg"]
+  }
+]
