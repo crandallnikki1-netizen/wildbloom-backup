@@ -8,7 +8,7 @@ $('#nav-toggle').addEventListener('click', () => {
 });
 
 function escapeHtml(value='') {
-  return value
+  return String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;')
@@ -82,13 +82,18 @@ function renderSettings(settings) {
 }
 
 function renderProducts(products=[]) {
-  productGrid.innerHTML = products.map(product => {
+  const visibleProducts = [...products]
+    .filter(product => !product.hidden)
+    .sort((a, b) => (Number(a.order) || 100) - (Number(b.order) || 100));
+
+  productGrid.innerHTML = visibleProducts.map(product => {
     const image = (product.images && product.images[0]) || 'assets/hero-ritual.svg';
+    const soldOut = Boolean(product.soldOut);
     return `
-      <article class="product-card">
+      <article class="product-card${soldOut ? ' product-card--soldout' : ''}">
         <div class="product-card__image">
           <img src="${escapeHtml(image)}" alt="${escapeHtml(product.name || '')}" />
-          ${product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : ''}
+          ${soldOut ? '<span class="product-badge">Sold Out</span>' : (product.badge ? `<span class="product-badge">${escapeHtml(product.badge)}</span>` : '')}
         </div>
         <div class="product-card__body">
           <p class="product-category">${escapeHtml(product.category || '')}</p>
@@ -97,12 +102,18 @@ function renderProducts(products=[]) {
           <p class="product-description">${escapeHtml(product.description || '')}</p>
           <div class="product-card__footer">
             <strong>$${escapeHtml(product.price || '0.00')}</strong>
-            <a class="btn btn--small" href="${escapeHtml(product.etsyUrl || '#')}" target="_blank" rel="noopener">View</a>
+            ${soldOut
+              ? '<span class="btn btn--small btn--ghost" aria-disabled="true">Sold Out</span>'
+              : `<a class="btn btn--small" href="${escapeHtml(product.etsyUrl || '#')}" target="_blank" rel="noopener">View</a>`}
           </div>
         </div>
       </article>
     `;
   }).join('');
+
+  if (!visibleProducts.length) {
+    productGrid.innerHTML = '<p>New Wild Bloom products are being added now. Check back soon.</p>';
+  }
 }
 
 loadSite().catch(err => {
