@@ -22,6 +22,8 @@ if (!fs.existsSync(SETTINGS_FILE)) fs.writeFileSync(SETTINGS_FILE, '{}');
 
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeJson = (file, value) => fs.writeFileSync(file, JSON.stringify(value, null, 2));
+const toBool = value => value === true || value === 'true';
+const toOrder = value => Number.isFinite(Number(value)) ? Number(value) : 100;
 
 function authCheck(req, res, next) {
   if (!ADMIN_PASS) return res.status(503).json({ error: 'Admin password is not configured on the server.' });
@@ -51,6 +53,8 @@ app.use(express.json({ limit: '5mb' }));
 app.use('/data/uploads', express.static(UPLOAD_DIR));
 app.use(express.static(ROOT));
 
+app.get('/api/health', (_, res) => res.json({ ok: true, adminConfigured: Boolean(ADMIN_PASS) }));
+
 app.post('/api/auth', (req, res) => {
   if (!ADMIN_PASS) return res.status(503).json({ error: 'Admin password is not configured on the server.' });
   if ((req.body || {}).password === ADMIN_PASS) return res.json({ ok: true });
@@ -70,6 +74,9 @@ app.post('/api/products', authCheck, upload.array('images', 10), (req, res) => {
   const products = readJson(PRODUCTS_FILE);
   const body = req.body || {};
   const imagePaths = (req.files || []).map(file => `data/uploads/${file.filename}`);
+  let fallbackImages = [];
+  try { fallbackImages = body.images ? JSON.parse(body.images) : []; } catch {}
+
   const product = {
     id: Date.now().toString(),
     name: body.name || 'Untitled Product',
@@ -78,8 +85,11 @@ app.post('/api/products', authCheck, upload.array('images', 10), (req, res) => {
     price: body.price || '0.00',
     description: body.description || '',
     badge: body.badge || '',
+    order: toOrder(body.order),
+    hidden: toBool(body.hidden),
+    soldOut: toBool(body.soldOut),
     etsyUrl: body.etsyUrl || 'https://houseofthewildbloom.etsy.com',
-    images: imagePaths.length ? imagePaths : (body.images ? JSON.parse(body.images) : [])
+    images: imagePaths.length ? imagePaths : fallbackImages
   };
   products.unshift(product);
   writeJson(PRODUCTS_FILE, products);
@@ -108,6 +118,9 @@ app.put('/api/products/:id', authCheck, upload.array('images', 10), (req, res) =
     price: body.price ?? current.price,
     description: body.description ?? current.description,
     badge: body.badge ?? current.badge,
+    order: body.order !== undefined ? toOrder(body.order) : (current.order ?? 100),
+    hidden: body.hidden !== undefined ? toBool(body.hidden) : Boolean(current.hidden),
+    soldOut: body.soldOut !== undefined ? toBool(body.soldOut) : Boolean(current.soldOut),
     etsyUrl: body.etsyUrl ?? current.etsyUrl,
     images
   };
