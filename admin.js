@@ -65,6 +65,20 @@ function fillSettings() {
   qs('#about-body2-input').value = about.body2 || '';
 }
 
+async function uploadImage(file) {
+  if (!file) return null;
+  const form = new FormData();
+  form.append('image', file);
+  const res = await fetch('/api/upload', {
+    method: 'POST',
+    headers: { 'x-admin-pass': adminPass },
+    body: form
+  });
+  if (!res.ok) throw new Error('Could not upload image');
+  const data = await res.json();
+  return data.path;
+}
+
 async function saveSettings(payload, statusSelector) {
   const res = await fetch('/api/settings', {
     method: 'PUT',
@@ -77,49 +91,71 @@ async function saveSettings(payload, statusSelector) {
 }
 
 qs('#save-general').addEventListener('click', async () => {
-  await saveSettings({
-    site: {
-      ...settingsCache.site,
-      name: qs('#site-name').value,
-      shortName: qs('#site-short').value,
-      tagline: qs('#site-tagline').value,
-      etsyUrl: qs('#site-etsy').value,
-      email: qs('#site-email').value,
-      announcement: qs('#site-announcement').value
-    }
-  }, '#general-status');
+  try {
+    await saveSettings({
+      site: {
+        ...settingsCache.site,
+        name: qs('#site-name').value,
+        shortName: qs('#site-short').value,
+        tagline: qs('#site-tagline').value,
+        etsyUrl: qs('#site-etsy').value,
+        email: qs('#site-email').value,
+        announcement: qs('#site-announcement').value
+      }
+    }, '#general-status');
+  } catch (err) {
+    qs('#general-status').textContent = err.message;
+  }
 });
 
 qs('#save-homepage').addEventListener('click', async () => {
-  await saveSettings({
-    hero: {
-      ...settingsCache.hero,
-      eyebrow: qs('#hero-eyebrow-input').value,
-      headline: qs('#hero-headline-input').value,
-      scriptLine: qs('#hero-script-input').value,
-      image: qs('#hero-image-input').value,
-      description: qs('#hero-description-input').value
-    },
-    about: {
-      ...settingsCache.about,
-      eyebrow: qs('#about-eyebrow-input').value,
-      headline: qs('#about-headline-input').value,
-      image: qs('#about-image-input').value,
-      body: qs('#about-body-input').value,
-      body2: qs('#about-body2-input').value
-    }
-  }, '#homepage-status');
+  const status = qs('#homepage-status');
+  status.textContent = 'Saving…';
+  try {
+    let heroImage = qs('#hero-image-input').value;
+    let aboutImage = qs('#about-image-input').value;
+    const heroFile = qs('#hero-image-upload').files[0];
+    const aboutFile = qs('#about-image-upload').files[0];
+    if (heroFile) heroImage = await uploadImage(heroFile);
+    if (aboutFile) aboutImage = await uploadImage(aboutFile);
+
+    await saveSettings({
+      hero: {
+        ...settingsCache.hero,
+        eyebrow: qs('#hero-eyebrow-input').value,
+        headline: qs('#hero-headline-input').value,
+        scriptLine: qs('#hero-script-input').value,
+        image: heroImage,
+        description: qs('#hero-description-input').value
+      },
+      about: {
+        ...settingsCache.about,
+        eyebrow: qs('#about-eyebrow-input').value,
+        headline: qs('#about-headline-input').value,
+        image: aboutImage,
+        body: qs('#about-body-input').value,
+        body2: qs('#about-body2-input').value
+      }
+    }, '#homepage-status');
+    qs('#hero-image-input').value = heroImage;
+    qs('#about-image-input').value = aboutImage;
+    qs('#hero-image-upload').value = '';
+    qs('#about-image-upload').value = '';
+  } catch (err) {
+    status.textContent = err.message;
+  }
 });
 
 function renderProducts() {
   const list = qs('#product-list');
-  list.innerHTML = productsCache.map(product => `
+  const sorted = [...productsCache].sort((a, b) => (Number(a.order) || 100) - (Number(b.order) || 100));
+  list.innerHTML = sorted.map(product => `
     <article class="list-item">
       <img src="${(product.images || [])[0] || 'assets/hero-ritual.svg'}" alt="${product.name}" />
       <div>
         <h3>${product.name}</h3>
         <p>${product.category || ''} ${product.scent ? '· ' + product.scent : ''}</p>
-        <small>$${product.price || '0.00'}</small>
+        <small>$${product.price || '0.00'} · order ${product.order ?? 100}${product.hidden ? ' · hidden' : ''}${product.soldOut ? ' · sold out' : ''}</small>
       </div>
       <div class="row-actions">
         <button class="btn btn--ghost" data-edit="${product.id}">Edit</button>
@@ -135,6 +171,7 @@ qs('#new-product-btn').addEventListener('click', () => {
   qs('#product-form').hidden = false;
   qs('#product-form').reset();
   qs('#product-id').value = '';
+  qs('#product-order').value = '100';
 });
 qs('#cancel-product').addEventListener('click', () => { qs('#product-form').hidden = true; });
 
@@ -148,8 +185,11 @@ function editProduct(id) {
   qs('#product-scent').value = product.scent || '';
   qs('#product-price').value = product.price || '';
   qs('#product-badge').value = product.badge || '';
+  qs('#product-order').value = product.order ?? 100;
   qs('#product-etsy').value = product.etsyUrl || '';
   qs('#product-image-path').value = (product.images || [])[0] || '';
+  qs('#product-hidden').checked = Boolean(product.hidden);
+  qs('#product-soldout').checked = Boolean(product.soldOut);
   qs('#product-description').value = product.description || '';
 }
 
@@ -171,6 +211,9 @@ qs('#product-form').addEventListener('submit', async (e) => {
   form.append('scent', qs('#product-scent').value);
   form.append('price', qs('#product-price').value);
   form.append('badge', qs('#product-badge').value);
+  form.append('order', qs('#product-order').value || '100');
+  form.append('hidden', qs('#product-hidden').checked ? 'true' : 'false');
+  form.append('soldOut', qs('#product-soldout').checked ? 'true' : 'false');
   form.append('etsyUrl', qs('#product-etsy').value);
   form.append('description', qs('#product-description').value);
   form.append('images', JSON.stringify([qs('#product-image-path').value].filter(Boolean)));
@@ -192,18 +235,14 @@ qs('#media-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const file = qs('#media-file').files[0];
   if (!file) return;
-  const form = new FormData();
-  form.append('image', file);
-  const res = await fetch('/api/upload', {
-    method: 'POST',
-    headers: { 'x-admin-pass': adminPass },
-    body: form
-  });
-  if (!res.ok) return alert('Could not upload image.');
-  const data = await res.json();
-  qs('#media-status').textContent = `Uploaded: ${data.path}`;
-  qs('#media-form').reset();
-  loadMedia();
+  try {
+    const path = await uploadImage(file);
+    qs('#media-status').textContent = `Uploaded: ${path}`;
+    qs('#media-form').reset();
+    loadMedia();
+  } catch (err) {
+    qs('#media-status').textContent = err.message;
+  }
 });
 
 async function loadMedia() {
