@@ -139,7 +139,7 @@ app.get('/api/media', (_, res) => {
   res.json(files.sort((a, b) => b.name.localeCompare(a.name)));
 });
 
-app.get('*', (req, res, next) => {
+app.use((req, res, next) => {
   if (req.path.startsWith('/api/')) return next();
   if (req.path.includes('.')) return next();
   return res.sendFile(path.join(ROOT, 'index.html'));
