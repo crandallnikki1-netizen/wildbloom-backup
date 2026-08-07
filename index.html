@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House of the Wild Bloom</title>
+  <meta name="description" content="Thoughtfully crafted skincare rooted with intention." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="announcement" id="announcement"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="#top" class="brand-mark">
+        <span class="brand-mark__mini">H.W.B.</span>
+        <div>
+          <div class="brand-mark__name" id="brand-name">House of the Wild Bloom</div>
+          <div class="brand-mark__tag">Ritual care, wildly rooted</div>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="#products" class="btn btn--small">Shop</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#collections">Collections</a>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" id="hero-section">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-eyebrow"></p>
+        <h1 id="hero-headline"></h1>
+        <p class="script-line" id="hero-script"></p>
+        <p class="lede" id="hero-description"></p>
+        <div class="hero-actions">
+          <a class="btn" id="hero-primary" href="#products">Shop the Collection</a>
+          <a class="btn btn--ghost" id="hero-secondary" href="#collections">View Ritual Boxes</a>
+        </div>
+        <div class="hero-points">
+          <span>Female veteran owned</span>
+          <span>Small batch</span>
+          <span>Made with intention</span>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-card">
+          <img id="hero-image" src="assets/hero-ritual.svg" alt="House of the Wild Bloom products" />
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee">
+      <div class="marquee-track" id="marquee-track"></div>
+    </section>
+
+    <section class="section wrap" id="collections">
+      <div class="section-heading">
+        <p class="eyebrow">Featured Collections</p>
+        <h2>Beautiful rituals for face, body, and home.</h2>
+      </div>
+      <div class="collection-grid" id="collections-grid"></div>
+    </section>
+
+    <section class="section split wrap" id="about">
+      <div class="split-media framed">
+        <img id="about-image" src="assets/founder-nikki.svg" alt="Founder making products" />
+      </div>
+      <div class="split-copy">
+        <p class="eyebrow" id="about-eyebrow"></p>
+        <h2 id="about-headline"></h2>
+        <p id="about-body"></p>
+        <p id="about-body2"></p>
+        <div class="benefit-list" id="benefits-list"></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="products">
+      <div class="section-heading section-heading--spread">
+        <div>
+          <p class="eyebrow">Shop Highlights</p>
+          <h2>Current favorites from the Wild Bloom collection.</h2>
+        </div>
+        <a class="btn btn--ghost" id="etsy-link-top" target="_blank" rel="noopener">Visit Etsy</a>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section class="section workshop wrap">
+      <div class="workshop-card">
+        <div class="workshop-copy">
+          <p class="eyebrow">Wild Bloom Workshop</p>
+          <h2>Midcentury warmth. Botanical soul.</h2>
+          <p>Designed to feel grounded, inviting, and easy to grow — this rebuild keeps the site warm and polished while making the backend easier for you to update without redoing everything from scratch.</p>
+          <ul>
+            <li>Swap photos</li>
+            <li>Edit wording</li>
+            <li>Add or remove products</li>
+            <li>Keep the brand consistent</li>
+          </ul>
+        </div>
+        <div class="workshop-image framed">
+          <img src="assets/hero-ritual.svg" alt="House of the Wild Bloom concept styling" />
+        </div>
+      </div>
+    </section>
+
+    <section class="cta wrap" id="contact">
+      <div class="cta-box">
+        <p class="eyebrow">Ready to bloom?</p>
+        <h2 id="footer-line"></h2>
+        <p id="footer-note"></p>
+        <div class="hero-actions">
+          <a class="btn" id="etsy-link-bottom" target="_blank" rel="noopener">Shop on Etsy</a>
+          <a class="btn btn--ghost" id="email-link" href="mailto:houseofthewildbloom@gmail.com">Email Nikki</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <div class="brand-mark__name brand-mark__name--footer">House of the Wild Bloom</div>
+        <p class="footer-copy">Thoughtfully crafted skincare rooted with intention.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#top">Top</a>
+        <a href="#collections">Collections</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
