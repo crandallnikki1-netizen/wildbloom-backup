@@ -59,7 +59,8 @@
               <label>Eyebrow<input id="hero-eyebrow-input" /></label>
               <label>Headline<input id="hero-headline-input" /></label>
               <label>Script line<input id="hero-script-input" /></label>
-              <label>Hero image path<input id="hero-image-input" /></label>
+              <label>Current hero image<input id="hero-image-input" readonly /></label>
+              <label class="full">Replace hero image<input type="file" id="hero-image-upload" accept="image/*" /><small>Choose a photo and Save Homepage. The dashboard uploads it for you.</small></label>
               <label class="full">Description<textarea id="hero-description-input" rows="3"></textarea></label>
             </div>
           </div>
@@ -69,7 +70,8 @@
             <div class="grid two">
               <label>Eyebrow<input id="about-eyebrow-input" /></label>
               <label>Headline<input id="about-headline-input" /></label>
-              <label>About image path<input id="about-image-input" /></label>
+              <label>Current about image<input id="about-image-input" readonly /></label>
+              <label>Replace about image<input type="file" id="about-image-upload" accept="image/*" /></label>
               <label class="full">Body<textarea id="about-body-input" rows="4"></textarea></label>
               <label class="full">Second paragraph<textarea id="about-body2-input" rows="4"></textarea></label>
             </div>
@@ -88,9 +90,12 @@
             <label>Scent<input id="product-scent" /></label>
             <label>Price<input id="product-price" /></label>
             <label>Badge<input id="product-badge" /></label>
+            <label>Display order<input id="product-order" type="number" min="0" step="1" value="100" /><small>Lower numbers show first.</small></label>
             <label>Etsy URL<input id="product-etsy" /></label>
-            <label>Image path (or upload below)<input id="product-image-path" /></label>
-            <label>Replace image upload<input type="file" id="product-image-upload" accept="image/*" /></label>
+            <label>Current image<input id="product-image-path" readonly /></label>
+            <label>Replace image<input type="file" id="product-image-upload" accept="image/*" /></label>
+            <label><input type="checkbox" id="product-hidden" /> Hide from website</label>
+            <label><input type="checkbox" id="product-soldout" /> Mark sold out</label>
             <label class="full">Description<textarea id="product-description" rows="4"></textarea></label>
           </div>
           <div class="row-actions">
