@@ -1,0 +1,75 @@
+{
+  "site": {
+    "name": "House of the Wild Bloom",
+    "shortName": "H.W.B.",
+    "tagline": "Thoughtfully crafted skincare rooted with intention.",
+    "subtagline": "Every ingredient has a purpose. Every purpose creates a ritual. A ritual to help you bloom.",
+    "etsyUrl": "https://houseofthewildbloom.etsy.com",
+    "email": "houseofthewildbloom@gmail.com",
+    "announcement": "Female veteran owned · handcrafted in small batches · rooted in purpose",
+    "season": "default"
+  },
+  "hero": {
+    "eyebrow": "Ritual Care, Wildly Rooted",
+    "headline": "Nourish. Restore. Bloom.",
+    "scriptLine": "Your ritual. Your moment.",
+    "description": "Skincare and artisan goods made with purpose — clean ingredients, real results, and beautiful rituals for face, body, and home.",
+    "primaryLabel": "Shop the Collection",
+    "secondaryLabel": "View Ritual Boxes",
+    "primaryUrl": "#products",
+    "secondaryUrl": "#collections",
+    "image": "assets/hero-ritual.svg"
+  },
+  "about": {
+    "eyebrow": "Meet Nikki",
+    "headline": "Handcrafted with strength. Rooted in purpose.",
+    "body": "House of the Wild Bloom was built around the belief that self-care should feel personal, beautiful, and intentional. Every product is created in small batches with ingredients that have a reason for being there — no filler, no fluff, just thoughtful ritual care.",
+    "body2": "From facial rituals and body butters to gift sets and candles, the goal is simple: create products that work, look beautiful, and make everyday care feel meaningful.",
+    "image": "assets/founder-nikki.svg"
+  },
+  "collections": [
+    {
+      "title": "Facial Rituals",
+      "description": "Cleanse, tone, and nourish with Moon Blossom, Clear Bloom, Ghost Whisper, and Golden Veil.",
+      "image": "assets/hero-ritual.svg",
+      "link": "#products"
+    },
+    {
+      "title": "Body Butters",
+      "description": "Awaken and AfterGlow bring rich hydration with a light ritual feel.",
+      "image": "assets/awaken-body-butter.svg",
+      "link": "#products"
+    },
+    {
+      "title": "Men’s Collection",
+      "description": "Ashwood, Free Bird, Barefoot Revival, and more for hardworking skin.",
+      "image": "assets/mens-detox.svg",
+      "link": "#products"
+    }
+  ],
+  "marquee": [
+    "Female veteran owned",
+    "Small batch ritual care",
+    "Face · Body · Home",
+    "Every ingredient has a purpose",
+    "Made with intention in Oregon"
+  ],
+  "benefits": [
+    {
+      "title": "Made with purpose",
+      "text": "Every formula is built around ingredients that do a real job."
+    },
+    {
+      "title": "Beautifully giftable",
+      "text": "From ritual boxes to seasonal favorites, every piece feels special."
+    },
+    {
+      "title": "Easy to update",
+      "text": "Change pictures, wording, and products from the owner dashboard."
+    }
+  ],
+  "footer": {
+    "line": "Cleanse · Nourish · Hydrate",
+    "note": "House of the Wild Bloom — rituals for every season."
+  }
+}
