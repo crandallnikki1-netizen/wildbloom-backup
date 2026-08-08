@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wild Bloom Owner Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="login-shell" id="login-shell">
+    <form class="login-card" id="login-form">
+      <div class="login-pill">H.W.B.</div>
+      <h1>Owner Dashboard</h1>
+      <p>Update wording, swap pictures, and manage products without touching code.</p>
+      <input type="password" id="password" placeholder="Dashboard password" required />
+      <button class="btn" type="submit">Unlock</button>
+      <p class="error" id="login-error"></p>
+    </form>
+  </div>
+
+  <div class="dashboard" id="dashboard" hidden>
+    <aside class="sidebar">
+      <div>
+        <div class="brand">House of the Wild Bloom</div>
+        <div class="muted">Flexible content dashboard</div>
+      </div>
+      <nav class="tabs">
+        <button class="tab is-active" data-tab="general">General</button>
+        <button class="tab" data-tab="homepage">Homepage</button>
+        <button class="tab" data-tab="products">Products</button>
+        <button class="tab" data-tab="media">Media Upload</button>
+      </nav>
+      <button class="btn btn--ghost" id="logout-btn">Log out</button>
+    </aside>
+
+    <main class="content">
+      <section class="panel is-active" id="panel-general">
+        <div class="panel-head"><h2>General settings</h2><button class="btn" id="save-general">Save general settings</button></div>
+        <div class="grid two">
+          <label>Site name<input id="site-name" /></label>
+          <label>Short name<input id="site-short" /></label>
+          <label>Tagline<input id="site-tagline" /></label>
+          <label>Etsy URL<input id="site-etsy" /></label>
+          <label>Email<input id="site-email" /></label>
+          <label>Announcement<input id="site-announcement" /></label>
+        </div>
+        <p class="status" id="general-status"></p>
+      </section>
+
+      <section class="panel" id="panel-homepage">
+        <div class="panel-head"><h2>Homepage content</h2><button class="btn" id="save-homepage">Save homepage content</button></div>
+        <div class="stack">
+          <div class="card-block">
+            <h3>Hero</h3>
+            <div class="grid two">
+              <label>Eyebrow<input id="hero-eyebrow-input" /></label>
+              <label>Headline<input id="hero-headline-input" /></label>
+              <label>Script line<input id="hero-script-input" /></label>
+              <label>Current hero image<input id="hero-image-input" readonly /></label>
+              <label class="full">Replace hero image<input type="file" id="hero-image-upload" accept="image/*" /><small>Choose a photo and Save Homepage. The dashboard uploads it for you.</small></label>
+              <label class="full">Description<textarea id="hero-description-input" rows="3"></textarea></label>
+            </div>
+          </div>
+
+          <div class="card-block">
+            <h3>About Nikki</h3>
+            <div class="grid two">
+              <label>Eyebrow<input id="about-eyebrow-input" /></label>
+              <label>Headline<input id="about-headline-input" /></label>
+              <label>Current about image<input id="about-image-input" readonly /></label>
+              <label>Replace about image<input type="file" id="about-image-upload" accept="image/*" /></label>
+              <label class="full">Body<textarea id="about-body-input" rows="4"></textarea></label>
+              <label class="full">Second paragraph<textarea id="about-body2-input" rows="4"></textarea></label>
+            </div>
+          </div>
+        </div>
+        <p class="status" id="homepage-status"></p>
+      </section>
+
+      <section class="panel" id="panel-products">
+        <div class="panel-head"><h2>Products</h2><button class="btn" id="new-product-btn">Add product</button></div>
+        <form id="product-form" class="card-block" hidden>
+          <input type="hidden" id="product-id" />
+          <div class="grid two">
+            <label>Name<input id="product-name" required /></label>
+            <label>Category<input id="product-category" /></label>
+            <label>Scent<input id="product-scent" /></label>
+            <label>Price<input id="product-price" /></label>
+            <label>Badge<input id="product-badge" /></label>
+            <label>Display order<input id="product-order" type="number" min="0" step="1" value="100" /><small>Lower numbers show first.</small></label>
+            <label>Etsy URL<input id="product-etsy" /></label>
+            <label>Current image<input id="product-image-path" readonly /></label>
+            <label>Replace image<input type="file" id="product-image-upload" accept="image/*" /></label>
+            <label><input type="checkbox" id="product-hidden" /> Hide from website</label>
+            <label><input type="checkbox" id="product-soldout" /> Mark sold out</label>
+            <label class="full">Description<textarea id="product-description" rows="4"></textarea></label>
+          </div>
+          <div class="row-actions">
+            <button class="btn" type="submit">Save product</button>
+            <button class="btn btn--ghost" id="cancel-product" type="button">Cancel</button>
+          </div>
+          <p class="status" id="product-status"></p>
+        </form>
+        <div id="product-list" class="list"></div>
+      </section>
+
+      <section class="panel" id="panel-media">
+        <div class="panel-head"><h2>Media upload</h2></div>
+        <form id="media-form" class="card-block">
+          <label>Upload image<input type="file" id="media-file" accept="image/*" required /></label>
+          <div class="row-actions"><button class="btn" type="submit">Upload</button></div>
+          <p class="status" id="media-status"></p>
+        </form>
+        <div id="media-list" class="list"></div>
+      </section>
+    </main>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
